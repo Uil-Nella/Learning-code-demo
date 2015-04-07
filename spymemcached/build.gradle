@@ -1,6 +1,8 @@
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'maven'
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.7
 version = '1.0'
 
 repositories {
@@ -8,5 +10,5 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'net.spy:spymemcached:2.11.7'
 }
