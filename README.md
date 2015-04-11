@@ -4,4 +4,8 @@
 
 * memcached客户端配置
 * redis demo
+* guava demo
+* bit code demo
+
+
 
