@@ -6,6 +6,6 @@
 * redis demo
 * guava demo
 * bit code demo
-
+* log man
 
 
