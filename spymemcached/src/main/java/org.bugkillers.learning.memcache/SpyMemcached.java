@@ -8,6 +8,9 @@
 
 package org.bugkillers.learning.memcache;
 
+import net.spy.memcached.AddrUtil;
+import net.spy.memcached.MemcachedClient;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.logging.Level;
@@ -38,7 +41,7 @@ public class SpyMemcached {
             System.out.println("Get Object after set :"+ cache.get(key)  );
 
         }catch (Exception e){
-            Logger.getLogger(SpyMemcached.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SpyMemcached.class.getName()).log(Level.SEVERE, null, e);
             System.exit(0);
 
 
