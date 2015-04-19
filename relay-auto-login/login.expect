@@ -1,25 +1,6 @@
 #!/usr/bin/expect 
 
 
-echo  '请输入6位的大象口令'
-if read -t 5 -p "dynamic_token:" dynamic_token
-then  
-    echo "hello $USER ,请输入对应的编号来登录"
-    echo "1:dx-hotel-goods-staging01"
-    echo "2:dx-hotel-goods01"
-    echo "3:dx-hotel-goods02"  
-        
-   if read -t 30 -p "number:" number
-   then      
-        ssh ${relay_name}@relay.sankuai.com
-   else
-       echo -e "\nsorry,too slow"  
-       exit 0
-   fi
-else
-    echo -e "\nsorry,too slow"
-    exit 0
-fi  
 
 
 # 设置超时时间为 60 秒
@@ -27,27 +8,24 @@ set timeout  60
 # 设置要登录的主机 IP 地址
 set host relay.sankuai.com 
 # 设置以什么名字的用户登录
-set name liuxinyu03
+set name [lindex $argv 0]
 # 设置用户名的登录密码
-set password LIUXy@2013 
+set password [lindex $argv 1]
 
 #spawn 一个 ssh 登录进程
 spawn  ssh $host -l $name 
 # 等待响应，第一次登录往往会提示是否永久保存 RSA 到本机的 know hosts 列表中；等到回答后，在提示输出密码；之后就直接提示输入密码
-expect { 
-    "(yes/no)?" { 
-        send "yes\n"
-        expect "assword:"
-        send "$pasword\n"
-    } 
-	"assword:" { 
-        send "$password\n"
-    } 
-} 
-expect "#"
+
+expect "Password & verification code:" {
+expect_user -re "(.*)\n"
+set password $expect_out(1,string)
+send "$password\r"
+}
+
+#expect "#"
 # 下面测试是否登录到 $host 
-send "uname\n"
-expect "Linux"
-send_user  "Now you can do some operation on this terminal\n"
+#send "uname\n"
+#expect "Linux"
+#send_user  "Now you can do some operation on this terminal\n"
 # 这里使用了 interact 命令，使执行完程序后，用户可以在 $host 终端进行交互操作。
-Interact
+#Interact

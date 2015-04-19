@@ -1,0 +1,13 @@
+#! /usr/bin/expect
+set database [lindex $argv 0]
+set timeout -1
+spawn ssh lixinran@relay.sankuai.com
+expect "Password & verification code:" {
+expect_user -re "(.*)\n"
+set password $expect_out(1,string)
+send "$password\r"
+}
+send "ssh srv23\r"
+send "sudo -usankuai -i\r"
+send "cosdblogin $database\r"
+interact

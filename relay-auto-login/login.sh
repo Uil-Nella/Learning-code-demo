@@ -16,7 +16,7 @@ relay_name=liuxinyu03
 relay_password=LIUXy@2013
 ##### script start ######
 echo  '请输入6位的大象口令'
-if read -t 5 -p "dynamic_token:" dynamic_token
+if read -t 30 -p "dynamic_token:" dynamic_token
 then 
     echo "hello $USER ,请输入对应的编号来登录"
     echo "1:dx-hotel-goods-staging01"
@@ -25,7 +25,8 @@ then
     
    if read -t 30 -p "number:" number
    then
-	ssh ${relay_name}@relay.sankuai.com
+        ./login.expect $ralay_name $relay_password$dynamic_token 	
+#	ssh ${relay_name}@relay.sankuai.com
    else
        echo -e "\nsorry,too slow" 
        exit 0
