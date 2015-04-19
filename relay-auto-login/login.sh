@@ -8,15 +8,28 @@
 
 ##### 用户配置区 开始 #####
 #
-#
 # 项目根目录，推荐将此脚本放在项目的根目录，这里就不用改了
 # 应用名，确保和Xcode里Product下的target_name.app名字一致
 #
 ##### 用户配置区 结束  #####
-echo  '请输入6位的大象口令:'
+relay_name=liuxinyu03
+relay_password=LIUXy@2013
+##### script start ######
+echo  '请输入6位的大象口令'
 if read -t 5 -p "dynamic_token:" dynamic_token
 then 
-    echo "hello $USER ,"
+    echo "hello $USER ,请输入对应的编号来登录"
+    echo "1:dx-hotel-goods-staging01"
+    echo "2:dx-hotel-goods01"
+    echo "3:dx-hotel-goods02"
+    
+   if read -t 30 -p "number:" number
+   then
+	ssh ${relay_name}@relay.sankuai.com
+   else
+       echo -e "\nsorry,too slow" 
+       exit 0
+   fi
 else
     echo -e "\nsorry,too slow"
     exit 0
