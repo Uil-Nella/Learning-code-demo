@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #--------------------------------------------
 # 这是一个自动打ipa的脚本，基于webfrogs的ipa-build书写：https://github.com/webfrogs/xcode_shell/blob/master/ipa-build
 
@@ -13,7 +13,7 @@
 # 应用名，确保和Xcode里Product下的target_name.app名字一致
 #
 ##### 用户配置区 结束  #####
-
+echo '请输入6位的大象口令:'
 relay_host=relay.sankuai.com
 relay_name=liuxinyu03
 relay_password=LIUXy@2013
