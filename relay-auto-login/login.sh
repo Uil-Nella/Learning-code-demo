@@ -9,8 +9,8 @@
 # 用户名和密码配置
 #
 ##### 用户配置区 结束  #####
-relay_name=liuxinyu03
-relay_password=LIUXy@2013
+relay_name=*******
+relay_password=******
 ##### script start ######
 echo  '请输入6位的大象口令'
 if read -t 30 -p "dynamic_token:" dynamic_token
