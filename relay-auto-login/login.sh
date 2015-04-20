@@ -9,20 +9,20 @@
 # 用户名和密码配置
 #
 ##### 用户配置区 结束  #####
-relay_name=*******
-relay_password=******
+relay_name=
+relay_password=
 ##### script start ######
 echo  '请输入6位的大象口令'
-if read -t 30 -p "dynamic_token:" dynamic_token
+if read -t 30 -p 'dynamic_token:' dynamic_token
 then 
-    echo "hello $USER ,请输入对应的编号来登录"
-    echo "###########hotel-goods###############”
-    
+    echo "hello ${USER} ,请输入对应的编号来登录"
+
+
     
    if read -t 30 -p "number:" number
    then
 	case "$number" in  
-  	 
+
 	esac
 #调用expect脚本  
         ./login.expect $relay_name $relay_password$dynamic_token $online_host  	
@@ -31,7 +31,7 @@ then
        exit 0
    fi
 else
-    echo -e "\nsorry,too slow ""
+    echo -e "\nsorry,too slow "
 
     exit 0
 fi
