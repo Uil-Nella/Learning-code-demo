@@ -1,8 +1,5 @@
 #!/usr/bin/expect 
 
-
-
-
 # 设置超时时间为 60 秒
 set timeout  60 
 # 设置要登录的主机 IP 地址
@@ -19,12 +16,13 @@ set online_host [lrange $argv 2 2]
 
 
 spawn /usr/bin/ssh $name@$relay_host
-expect "*assword*"
-send "$password\n"
-expect "*"
-send "ssh $online_host\n"
-expect "*"
-send "sudo -usankuai -i\n"
+#expect "*assword*" {send "$password\n"}
+
+send "ssh $online_host\r"
+
+send "sudo -usankuai -i\r"
+
+send "cd /opt/logs/mobile \r"
 
 interact
 # 这里使用了 interact 命令，使执行完程序后，用户可以在 $host 终端进行交互操作。
