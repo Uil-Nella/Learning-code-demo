@@ -9,12 +9,13 @@ import smtplib
 from email.mime.text import MIMEText
 mailto_list=["liuxinyu03@meituan.com"]
 mail_host="smtp.163.com"  #设置服务器
-mail_user="bugkillers"    #用户名
-mail_pass="LIUxinyu0718"   #口令
+mail_user="mt_server_monitor"    #用户名
+mail_pass="jyzjrjevzeiynhrd"   #口令
 mail_postfix="163.com"  #发件箱的后缀
+mail_title="MTServerMonitor"
 
 def send_mail(to_list,sub,content):  #to_list：收件人；sub：主题；content：邮件内容
-    me="hello"+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
+    me=mail_title+"<"+mail_user+"@"+mail_postfix+">"   #这里的hello可以任意设置，收到信后，将按照设置显示
     msg = MIMEText(content,_subtype='html',_charset='gb2312')    #创建一个实例，这里设置为html格式邮件
     msg['Subject'] = sub    #设置主题
     msg['From'] = me
