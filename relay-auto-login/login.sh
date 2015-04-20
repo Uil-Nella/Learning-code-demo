@@ -25,8 +25,13 @@ then
     
    if read -t 30 -p "number:" number
    then
-        ./login.expect $ralay_name $relay_password$dynamic_token 	
-#	ssh ${relay_name}@relay.sankuai.com
+	case "$number" in  
+  		1   ) online_host=dx-hotel-goods-staging01;;  
+  		2   ) online_host=dx-hotel-goods01;;  
+  		3   ) online_host=dx-hotel-goods02;;  
+  		4   ) echo "Punctuation, whitespace, or other";;  
+	esac  
+        ./login.expect $relay_name $relay_password$dynamic_token $online_host  	
    else
        echo -e "\nsorry,too slow" 
        exit 0
@@ -35,10 +40,10 @@ else
     echo -e "\nsorry,too slow"
     exit 0
 fi
-relay_host=relay.sankuai.com
+#relay_host=relay.sankuai.com
 
-relay_name=liuxinyu03
-relay_password=LIUXy@2013
+#relay_name=liuxinyu03
+#relay_password=LIUXy@2013
 echo $dynamic_token
 
 
