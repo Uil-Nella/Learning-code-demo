@@ -56,6 +56,10 @@ jvm_pid = os.popen(bash_pid).read().strip()
 bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13  > jvm_instance.txt"
 os.popen(bash_jmap)
 
+# gc统计 输出的是GC信息，采样时间间隔为250ms，采样数为4
+bash_gc = "jstat -gc "+jvm_pid+" 250 4 > jvm_gc.txt"
+os.system(bash_gc)
+
 # 延时1秒
 time.sleep(1)
 
