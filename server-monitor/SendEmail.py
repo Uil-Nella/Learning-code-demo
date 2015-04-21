@@ -1,9 +1,12 @@
 #!/usr/bin/env Python
 # coding=utf-8
+"""
+配合crontab来定时的读取服务器的部分信息
+1、top信息
+2、JVM实例信息
+组装成html发送邮件
+"""
 
-'''
-发送html文本邮件
-'''
 import smtplib
 import fileinput
 import os
@@ -22,41 +25,6 @@ def get_ip_address(ifname):
         struct.pack('256s', ifname[:15])
     )[20:24])
 
-# top信息的获取
-bash_top = "top -bn 1 | head -5 > top.txt"
-os.system(bash_top)
-bash_pid = "jps | grep 'Bootstrap' | awk '{print $1}'"
-# 服务器的JVM的pid 并去掉空格
-jvm_pid = os.popen(bash_pid).read()
-bash_jmap = "jmap -histo:live " + jvm_pid.strip() + " | head -13  > jvm_instance.txt"
-os.popen(bash_jmap)
-
-# 获取电脑名称
-# 获取本机电脑名
-server_name = socket.getfqdn(socket.gethostname())
-inner_ip = get_ip_address("lo")
-out_ip = get_ip_address("eth0")
-
-mailto_list = ["liuxinyu03@meituan.com"]
-mail_host = "smtp.163.com"  # 设置服务器
-mail_user = "mt_server_monitor"  # 用户名
-mail_pass = "jyzjrjevzeiynhrd"  # 口令
-mail_postfix = "163.com"  # 发件箱的后缀
-mail_title = "MTServerMonitor"
-mail_context = "<h3>服务器top信息:</h3><hr>"
-mail_time = time.strftime("%Y-%m-%d %X", time.localtime(time.time()))
-mail_sub = "【监控邮件】服务器(" + server_name + ")--公网IP(" + out_ip + ")--内网IP(" + inner_ip + ")--时间(" + mail_time + ")"
-
-# 讀取top文件
-for line in fileinput.input("top.txt"):
-    mail_context = mail_context + "<pre>" + line + "</pre>"
-
-mail_context += "<h3>JVM存活实例排行10</h3><hr>"
-
-# 讀取jvm_instance文件
-for line in fileinput.input("jvm_instance.txt"):
-    # 并將标签符号替换成html的符号
-    mail_context = mail_context + "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
 # 邮件发动方法
 def send_mail(to_list, sub, content):  # to_list：收件人；sub：主题；content：邮件内容
@@ -76,7 +44,60 @@ def send_mail(to_list, sub, content):  # to_list：收件人；sub：主题；co
         print str(e)
         return False
 
+# top信息的获取
+bash_top = "top -bn 1 | head -5 > top.txt"
+os.system(bash_top)
 
+# 服务器的JVM的pid 并去掉空格
+bash_pid = "jps | grep 'Bootstrap' | awk '{print $1}'"
+jvm_pid = os.popen(bash_pid).read().strip()
+
+# 获取JVM中存活得对象
+bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13  > jvm_instance.txt"
+os.popen(bash_jmap)
+
+# 延时1秒
+time.sleep(1)
+
+# 获取本机名称和IP
+server_name = socket.getfqdn(socket.gethostname())
+# 内网IP
+inner_ip = get_ip_address("lo")
+# 公网IP
+out_ip = get_ip_address("eth0")
+
+# 邮件接收者
+mailto_list = ["liuxinyu03@meituan.com"]
+# 设置服务器
+mail_host = "smtp.163.com"
+# 用户名
+mail_user = "mt_server_monitor"
+# 动态客户端口令
+mail_pass = "jyzjrjevzeiynhrd"
+# 发件箱的后缀
+mail_postfix = "163.com"
+# 标题名称
+mail_title = "MTAServerMonitor"
+# 标题时间
+mail_time = time.strftime("%Y-%m-%d %X", time.localtime(time.time()))
+# 邮件主题
+mail_sub = "【监控邮件】服务器(" + server_name + ")--IP(" + out_ip + ")--时间(" + mail_time + ")"
+# 邮件正文
+mail_context = "<h3>服务器top信息:</h3><hr>"
+
+# 读取top文件
+for line in fileinput.input("top.txt"):
+    mail_context += "<pre>" + line + "</pre>"
+
+mail_context += "<h3>JVM存活实例排行10:</h3><hr>"
+
+# 读取jvm_instance文件,并将标签退换掉
+for line in fileinput.input("jvm_instance.txt"):
+    # 并將标签符号替换成html的符号
+    mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
+
+
+# 入口
 if __name__ == '__main__':
     if send_mail(mailto_list, mail_sub, mail_context):
         print "发送成功"
