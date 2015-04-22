@@ -44,23 +44,27 @@ def send_mail(to_list, sub, content):  # to_list：收件人；sub：主题；co
         print str(e)
         return False
 
+
+# 根据shell命令返回一个list 文本
+def get_text_sh(bash_sh):
+    result = os.popen(bash_sh).read()
+    return result.split("\n")
+
+
 # top信息的获取
 bash_top = "top -bn 1 | head -5 "
-top_txt = os.popen(bash_top).read()
-top_arr_txt = top_txt.split("\n")
+top_arr_txt = get_text_sh(bash_top)
 # 服务器的JVM的pid 并去掉空格
 bash_pid = "jps | grep 'Bootstrap' | awk '{print $1}'"
 jvm_pid = os.popen(bash_pid).read().strip()
 
 # 获取JVM中存活得对象
 bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13 "
-jvm_instance_txt = os.popen(bash_jmap).read()
-jvm_instance_arr = jvm_instance_txt.split("\n")
+jvm_instance_arr = get_text_sh(bash_jmap)
 
-# gc统计 输出的是GC信息，采样时间间隔为250ms，采样数为4
-bash_gc = "jstat -gc "+jvm_pid+" 250 4 "
-jvm_gc_txt = os.popen(bash_gc).read()
-jvm_gc_arr = jvm_gc_txt.split("\n")
+# gc统计，采样时间间隔为250ms，采样数为4
+bash_gc = "jstat -gc " + jvm_pid + " 250 4 "
+jvm_gc_arr = get_text_sh(bash_gc)
 
 
 # 获取本机名称和IP
@@ -89,23 +93,23 @@ mail_sub = "【监控邮件】服务器(" + server_name + ")--IP(" + out_ip + ")
 # 邮件正文
 mail_context = "<h3>服务器top信息:</h3><hr>"
 
-# 读取top文件
+# 处理top信息
 for line in top_arr_txt:
     mail_context += "<pre>" + line + "</pre>"
 
 mail_context += "<h3>JVM存活实例排行10:</h3><hr>"
 
-# 读取jvm_instance文件,并将标签退换掉
+# 处理jvm,并将标签退换掉
 for line in jvm_instance_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
 mail_context += "<h3>GC情况 采样时间间隔为250ms，采样数为4:</h3><hr>"
 
-# 读取jvm_instance文件,并将标签退换掉
+# 处理gc信息
 for line in jvm_gc_arr:
     # 并將标签符号替换成html的符号
-    mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
+    mail_context += "<pre>" + line + "</pre>"
 
 # 入口
 if __name__ == '__main__':
