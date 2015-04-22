@@ -62,10 +62,17 @@ jvm_pid = os.popen(bash_pid).read().strip()
 bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13 "
 jvm_instance_arr = get_text_sh(bash_jmap)
 
+# JVM堆信息
+bash_jmap_heap = "jmap -heap " + jvm_pid
+jvm_heap_arr = get_text_sh(bash_jmap_heap)
+
 # gc统计，采样时间间隔为250ms，采样数为4
 bash_gc = "jstat -gc " + jvm_pid + " 250 4 "
 jvm_gc_arr = get_text_sh(bash_gc)
 
+# JVM线程快照
+# bash_jvm_thread = "jstack -l " + jvm_pid
+# jvm_thread_arr = get_text_sh(bash_jvm_thread)
 
 # 获取本机名称和IP
 server_name = socket.getfqdn(socket.gethostname())
@@ -90,27 +97,51 @@ mail_title = "MTAServerMonitor"
 mail_time = time.strftime("%Y-%m-%d %X", time.localtime(time.time()))
 # 邮件主题
 mail_sub = "【监控邮件】服务器(" + server_name + ")--IP(" + out_ip + ")--时间(" + mail_time + ")"
+# 目录导航
+mail_catalog = "<ul>" \
+               "<li><a href = '#top'>服务器top信息</a></li>" \
+               "<li><a href = '#instance'>JVM存活实例</a></li>" \
+               "<li><a href = '#gc'>GC情况</a></li>" \
+               "<li><a href = '#heap'>JVM堆信息</a></li>" \
+               "<li><a href = '#thread'>JVM线程快照及锁</a></li>" \
+               "</ul>"
+
 # 邮件正文
-mail_context = "<h3>服务器top信息:</h3><hr>"
+mail_context = mail_catalog + "<h3><a name = 'top'>服务器top信息:</a></h3><hr>"
 
 # 处理top信息
 for line in top_arr_txt:
     mail_context += "<pre>" + line + "</pre>"
 
-mail_context += "<h3>JVM存活实例排行10:</h3><hr>"
+mail_context += "<h3><a name = 'instance'>JVM存活实例10:</a></h3><hr>"
 
 # 处理jvm,并将标签退换掉
 for line in jvm_instance_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
-mail_context += "<h3>GC情况 采样时间间隔为250ms，采样数为4:</h3><hr>"
+mail_context += "<h3><a name = 'gc'>GC情况 采样时间间隔为250ms，采样数为4:</a></h3><hr>"
 
 # 处理gc信息
 for line in jvm_gc_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line + "</pre>"
 
+mail_context += "<h3><a name = 'heap'>JVM堆信息:</a></h3><hr>"
+
+# 处理heap信息
+for line in jvm_heap_arr:
+    # 并將标签符号替换成html的符号
+    mail_context += "<pre>" + line + "</pre>"
+
+mail_context += "<h3><a name = 'thread'>JVM线程快照及锁情况:</a></h3><hr>"
+
+# 处理JVM线程快照及锁情况
+# for line in jvm_thread_arr:
+# 并將标签符号替换成html的符号
+# mail_context += "<pre>" + line + "</pre>"
+
+mail_context += "<pre>线程快照过大，暂时未提供显示，如有需要请联系<a href = '刘新宇'>liuxinyu03</pre>"
 # 入口
 if __name__ == '__main__':
     if send_mail(mailto_list, mail_sub, mail_context):
