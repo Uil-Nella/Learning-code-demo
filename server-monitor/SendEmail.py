@@ -4,6 +4,7 @@
 配合crontab来定时的读取服务器的部分信息
 1、top信息
 2、JVM实例信息
+3、GC信息
 组装成html发送邮件
 """
 
@@ -99,7 +100,7 @@ for line in jvm_instance_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
-mail_context += "<h3>JVM gc情况10:</h3><hr>"
+mail_context += "<h3>GC情况 采样时间间隔为250ms，采样数为4:</h3><hr>"
 
 # 读取jvm_instance文件,并将标签退换掉
 for line in jvm_gc_arr:
