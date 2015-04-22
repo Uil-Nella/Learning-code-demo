@@ -8,7 +8,6 @@
 """
 
 import smtplib
-import fileinput
 import os
 import socket
 import fcntl
@@ -45,23 +44,23 @@ def send_mail(to_list, sub, content):  # to_list：收件人；sub：主题；co
         return False
 
 # top信息的获取
-bash_top = "top -bn 1 | head -5 > top.txt"
-os.system(bash_top)
-
+bash_top = "top -bn 1 | head -5 "
+top_txt = os.popen(bash_top).read()
+top_arr_txt = top_txt.split("\n")
 # 服务器的JVM的pid 并去掉空格
 bash_pid = "jps | grep 'Bootstrap' | awk '{print $1}'"
 jvm_pid = os.popen(bash_pid).read().strip()
 
 # 获取JVM中存活得对象
-bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13  > jvm_instance.txt"
-os.popen(bash_jmap)
+bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13 "
+jvm_instance_txt = os.popen(bash_jmap).read()
+jvm_instance_arr = jvm_instance_txt.split("\n")
 
 # gc统计 输出的是GC信息，采样时间间隔为250ms，采样数为4
-bash_gc = "jstat -gc "+jvm_pid+" 250 4 > jvm_gc.txt"
-os.system(bash_gc)
+bash_gc = "jstat -gc "+jvm_pid+" 250 4 "
+jvm_gc_txt = os.popen(bash_gc).read()
+jvm_gc_arr = jvm_gc_txt.split("\n")
 
-# 延时1秒
-time.sleep(1)
 
 # 获取本机名称和IP
 server_name = socket.getfqdn(socket.gethostname())
@@ -90,16 +89,22 @@ mail_sub = "【监控邮件】服务器(" + server_name + ")--IP(" + out_ip + ")
 mail_context = "<h3>服务器top信息:</h3><hr>"
 
 # 读取top文件
-for line in fileinput.input("top.txt"):
+for line in top_arr_txt:
     mail_context += "<pre>" + line + "</pre>"
 
 mail_context += "<h3>JVM存活实例排行10:</h3><hr>"
 
 # 读取jvm_instance文件,并将标签退换掉
-for line in fileinput.input("jvm_instance.txt"):
+for line in jvm_instance_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
+mail_context += "<h3>JVM gc情况10:</h3><hr>"
+
+# 读取jvm_instance文件,并将标签退换掉
+for line in jvm_gc_arr:
+    # 并將标签符号替换成html的符号
+    mail_context += "<pre>" + line.replace("<", "&lt;").replace(">", "&gt;") + "</pre>"
 
 # 入口
 if __name__ == '__main__':
