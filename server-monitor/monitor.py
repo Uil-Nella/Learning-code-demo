@@ -14,6 +14,7 @@ import socket
 import fcntl
 import struct
 import time
+import sys
 from email.mime.text import MIMEText
 
 # 获取本机ip和名称
@@ -55,24 +56,24 @@ def get_text_sh(bash_sh):
 bash_top = "top -bn 1 | head -5 "
 top_arr_txt = get_text_sh(bash_top)
 # 服务器的JVM的pid 并去掉空格
-bash_pid = "jps | grep 'Bootstrap' | awk '{print $1}'"
+bash_pid = "/usr/local/java/bin/jps | grep 'Bootstrap' | awk '{print $1}'"
 jvm_pid = os.popen(bash_pid).read().strip()
 
 # 获取JVM中存活得对象
-bash_jmap = "jmap -histo:live " + jvm_pid + " | head -13 "
+bash_jmap = "/usr/local/java/bin/jmap -histo:live " + jvm_pid + " | head -13 "
 jvm_instance_arr = get_text_sh(bash_jmap)
 
 # JVM堆信息
-bash_jmap_heap = "jmap -heap " + jvm_pid
+bash_jmap_heap = "/usr/local/java/bin/jmap -heap " + jvm_pid
 jvm_heap_arr = get_text_sh(bash_jmap_heap)
 
 # gc统计，采样时间间隔为250ms，采样数为4
-bash_gc = "jstat -gc " + jvm_pid + " 250 4 "
+bash_gc = "/usr/local/java/bin/jstat -gc " + jvm_pid + " 250 4 "
 jvm_gc_arr = get_text_sh(bash_gc)
 
 # JVM线程快照
-# bash_jvm_thread = "jstack -l " + jvm_pid
-# jvm_thread_arr = get_text_sh(bash_jvm_thread)
+bash_jvm_thread = "jstack -l " + jvm_pid
+jvm_thread_arr = get_text_sh(bash_jvm_thread)
 
 # 获取本机名称和IP
 server_name = socket.getfqdn(socket.gethostname())
@@ -105,9 +106,10 @@ mail_catalog = "<ul>" \
                "<li><a href = '#heap'>JVM堆信息</a></li>" \
                "<li><a href = '#thread'>JVM线程快照及锁</a></li>" \
                "</ul>"
-
+# 报警内容
+mail_context = "<h2><font color='red'>" + sys.argv[1] + "</font></h2>"
 # 邮件正文
-mail_context = mail_catalog + "<h3><a name = 'top'>服务器top信息:</a></h3><hr>"
+mail_context += mail_catalog + "<h3><a name = 'top'>服务器top信息:</a></h3><hr>"
 
 # 处理top信息
 for line in top_arr_txt:
