@@ -16,6 +16,8 @@
 	<!-- Serve static content -->
 	<mvc:default-servlet-handler />
 
+	<mvc:resources mapping="/api/**" location="/webjars/swagger-ui/2.1.8-M1/dist/" />
+
 
 	<!-- 样式话API工具 -->
 	<!-- <bean class="org.bugkillers.back.swagger.CustomJavaPluginConfig" /> -->
@@ -23,7 +25,6 @@
 	<bean id="jsonConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 		<property name="supportedMediaTypes" value="application/json" />
-		<property name="prettyPrint" value="true" />
 	</bean>
 
 </beans>
