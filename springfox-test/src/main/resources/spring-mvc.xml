@@ -21,6 +21,7 @@
 
 	<!-- 样式话API工具 -->
 	<!-- <bean class="org.bugkillers.back.swagger.CustomJavaPluginConfig" /> -->
+
 	<!-- 对json支持 -->
 	<bean id="jsonConverter"
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
