@@ -33,9 +33,9 @@ public class MyEventBus {
             return null;
         }
 
-        public Set<Class<?>> load(Class<?> concreteClass) {
-            return TypeToken.of(concreteClass).getTypes().rawTypes();
-        }
+//        public Set<Class<?>> load(Class<?> concreteClass) {
+//            return TypeToken.of(concreteClass).getTypes().rawTypes();
+//        }
     });
     private final SetMultimap<Class<?>, MyEventHandler> handlersByType;
     private final ReadWriteLock handlersByTypeLock;

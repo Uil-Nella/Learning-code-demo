@@ -2,13 +2,11 @@ package org.bugkillers.learning.guava.personal;
 
 import com.google.common.annotations.Beta;
 import com.google.common.base.Preconditions;
-import com.google.common.eventbus.EventBus;
-import org.bugkillers.learning.guava.personal.MyEventBus.EventWithHandler ;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.Executor;
 
 @Beta
-public class MyAsyncEventBus extends EventBus {
+public class MyAsyncEventBus extends MyEventBus {
     private final Executor executor;
     private final ConcurrentLinkedQueue<EventWithHandler> eventsToDispatch = new ConcurrentLinkedQueue();
 
