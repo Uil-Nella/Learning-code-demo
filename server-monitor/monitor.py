@@ -83,13 +83,13 @@ inner_ip = get_ip_address("lo")
 out_ip = get_ip_address("eth0")
 
 # 邮件接收者
-mailto_list = ["liuxinyu03@meituan.com"]
+mailto_list = ["test"]
 # 设置服务器
 mail_host = "smtp.163.com"
 # 用户名
 mail_user = "mt_server_monitor"
 # 动态客户端口令
-mail_pass = "jyzjrjevzeiynhrd"
+mail_pass = "无聊的人真是多，大哥您拿了我这个密码有用否？"
 # 发件箱的后缀
 mail_postfix = "163.com"
 # 标题名称
