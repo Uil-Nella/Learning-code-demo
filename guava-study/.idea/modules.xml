@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Learning-code-demo.iml" filepath="$PROJECT_DIR$/Learning-code-demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/guava-study.iml" filepath="$PROJECT_DIR$/guava-study.iml" />
     </modules>
   </component>
 </project>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" inherit-compiler-output="false">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5" inherit-compiler-output="false">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -18,7 +18,7 @@
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.7" level="project" />
     <orderEntry type="library" name="Maven: joda-time:joda-time:2.5" level="project" />
     <orderEntry type="library" name="Maven: com.mangofactory:swagger-models:1.0.2" level="project" />
-    <orderEntry type="module" module-name="hotel-goods-api" />
+    <orderEntry type="library" name="Maven: com.meituan:hotelgoods-api:1.0-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-core:3.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-asm:3.1.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-context:3.1.2.RELEASE" level="project" />
@@ -41,5 +41,6 @@
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.2" level="project" />
     <orderEntry type="library" name="Maven: cglib:cglib:2.2.2" level="project" />
     <orderEntry type="library" name="Maven: asm:asm:3.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.webjars.bower:swagger-ui:2.1.8-M1" level="project" />
   </component>
 </module>
