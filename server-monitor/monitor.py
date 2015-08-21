@@ -143,7 +143,7 @@ for line in jvm_thread_arr:
     # 并將标签符号替换成html的符号
     mail_context += "<pre>" + line + "</pre>"
 
-mail_context += "<pre>线程快照过大，暂时未提供显示，如有需要请联系<a href = '刘新宇'>liuxinyu03</pre>"
+mail_context += "<pre>线程快照过大，暂时未提供显示，如有需要请联系<a href = 'xx'>xx</pre>"
 # 入口
 if __name__ == '__main__':
     if send_mail(mailto_list, mail_sub, mail_context):
