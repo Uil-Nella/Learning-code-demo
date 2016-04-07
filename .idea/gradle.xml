@@ -12,6 +12,26 @@
             <option value="$PROJECT_DIR$" />
           </set>
         </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/groovy-test" />
+        <option name="gradleHome" value="$USER_HOME$/software/gradle/gradle-2.3" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/groovy-test" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$/groovy-test" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>

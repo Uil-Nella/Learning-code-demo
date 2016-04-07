@@ -1,0 +1,1 @@
+package org.bugkillers.groovy.test.guice;

@@ -1,3 +1,4 @@
+package org.bugkillers.groovy.test
 /**
  * groovy小程序示例
  * @author liuxinyu

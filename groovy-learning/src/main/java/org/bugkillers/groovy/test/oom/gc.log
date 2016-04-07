@@ -1,0 +1,13 @@
+Java HotSpot(TM) 64-Bit Server VM (24.76-b04) for bsd-amd64 JRE (1.7.0_76-b13), built on Dec 18 2014 16:27:39 by "java_re" with gcc 4.2.1 (Based on Apple Inc. build 5658) (LLVM build 2336.11.00)
+Memory: 4k page, physical 16777216k(4194304k free)
+
+/proc/meminfo:
+
+CommandLine flags: -XX:+CMSClassUnloadingEnabled -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=./heapdump.hprof -XX:InitialHeapSize=104857600 -XX:MaxHeapSize=104857600 -XX:MaxNewSize=34955264 -XX:MaxPermSize=15728640 -XX:MaxTenuringThreshold=6 -XX:NewSize=34955264 -XX:OldPLABSize=16 -XX:OldSize=69902336 -XX:PermSize=15728640 -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+TraceClassLoading -XX:+TraceClassUnloading -XX:+UseCompressedOops -XX:+UseConcMarkSweepGC -XX:+UseParNewGC 
+Heap
+ par new generation   total 30720K, used 1093K [0x00000007f8e00000, 0x00000007faf50000, 0x00000007faf50000)
+  eden space 27328K,   4% used [0x00000007f8e00000, 0x00000007f8f11568, 0x00000007fa8b0000)
+  from space 3392K,   0% used [0x00000007fa8b0000, 0x00000007fa8b0000, 0x00000007fac00000)
+  to   space 3392K,   0% used [0x00000007fac00000, 0x00000007fac00000, 0x00000007faf50000)
+ concurrent mark-sweep generation total 68288K, used 0K [0x00000007faf50000, 0x00000007ff200000, 0x00000007ff200000)
+ concurrent-mark-sweep perm gen total 14336K, used 2626K [0x00000007ff200000, 0x0000000800000000, 0x0000000800000000)
