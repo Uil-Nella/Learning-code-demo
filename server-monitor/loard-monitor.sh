@@ -19,6 +19,6 @@ average_int=`echo $average_load | cut -f 1 -d "."`
 
 #当单个核心15分钟的平均负载值大于等于1.0（即个位整数大于0） ，直接发邮件告警
 if (($average_int > 0)); then
-      python  /opt/meituan/monitor/monitor.py "服务器15分钟的系统单个核心平均负载为$average_load，超过警戒值1.0，请立即处理！！！"
+      python  /opt/xx/monitor/monitor.py "服务器15分钟的系统单个核心平均负载为$average_load，超过警戒值1.0，请立即处理！！！"
 
 fi

@@ -3,7 +3,7 @@
 # 设置超时时间为 60 秒
 set timeout  60 
 # 设置要登录的主机 IP 地址
-set relay_host relay.sankuai.com 
+set relay_host rel.com 
 # 设置以什么名字的用户登录
 set name [lrange $argv 0 0]
 # 设置用户名的登录密码
