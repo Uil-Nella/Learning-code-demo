@@ -6,10 +6,9 @@
 * redis demo
 * guava demo
 * bit code demo
-* log man
+* log 
 * java 注解开发学习
 * 日志框架学习
-* 预付
 * 交互shell 脚本
 
 
