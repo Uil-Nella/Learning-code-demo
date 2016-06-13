@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Learning-code-demo.iml" filepath="$PROJECT_DIR$/Learning-code-demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/groovy-learning/groovy-learning.iml" filepath="$PROJECT_DIR$/groovy-learning/groovy-learning.iml" />
       <module fileurl="file://$PROJECT_DIR$/groovy-test/groovy-test.iml" filepath="$PROJECT_DIR$/groovy-test/groovy-test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hystrix-learning/hystrix-learning.iml" filepath="$PROJECT_DIR$/hystrix-learning/hystrix-learning.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-learning/spring-learning.iml" filepath="$PROJECT_DIR$/spring-learning/spring-learning.iml" />
     </modules>
   </component>

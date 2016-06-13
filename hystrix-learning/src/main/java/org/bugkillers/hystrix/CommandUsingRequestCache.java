@@ -1,5 +1,8 @@
 package org.bugkillers.hystrix;
 
+import com.netflix.hystrix.HystrixCommand;
+import com.netflix.hystrix.HystrixCommandGroupKey;
+
 public class CommandUsingRequestCache extends HystrixCommand<Boolean> {
  
     private final int value;
