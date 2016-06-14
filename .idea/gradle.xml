@@ -4,6 +4,21 @@
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/../JavaDesignPattern" />
+        <option name="gradleHome" value="$USER_HOME$/software/gradle/gradle-2.3" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../JavaDesignPattern" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$/../JavaDesignPattern" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$USER_HOME$/software/gradle/gradle-2.3" />
         <option name="gradleJvm" value="1.7" />
