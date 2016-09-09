@@ -22,15 +22,27 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="bugkillers-section" />
         <module name="groovy-learning" />
+        <module name="guava-study" />
         <module name="hystrix-learning" />
         <module name="spring-learning" />
       </profile>
+      <profile default="false" name="Annotation profile for tair-client" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="true" />
+        <module name="tair-client" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="groovy-learning" target="1.7" />
-      <module name="hystrix-learning" target="1.7" />
-      <module name="spring-learning" target="1.7" />
+      <module name="bugkillers-section" target="1.5" />
+      <module name="groovy-learning" target="1.5" />
+      <module name="guava-study" target="1.5" />
+      <module name="hystrix-learning" target="1.5" />
+      <module name="spring-learning" target="1.5" />
+      <module name="tair-client" target="1.6" />
     </bytecodeTargetLevel>
   </component>
 </project>

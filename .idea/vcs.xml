@@ -3,9 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../JavaDesignPattern" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/../JavaDesignPattern" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../tair-java-client" vcs="Git" />
   </component>
 </project>
