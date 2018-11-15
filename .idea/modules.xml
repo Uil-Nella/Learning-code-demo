@@ -9,8 +9,10 @@
       <module fileurl="file://$PROJECT_DIR$/groovy-test/groovy-test.iml" filepath="$PROJECT_DIR$/groovy-test/groovy-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/guava-study/guava-study.iml" filepath="$PROJECT_DIR$/guava-study/guava-study.iml" />
       <module fileurl="file://$PROJECT_DIR$/hystrix-learning/hystrix-learning.iml" filepath="$PROJECT_DIR$/hystrix-learning/hystrix-learning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../lol-test/lol-test.iml" filepath="$PROJECT_DIR$/../lol-test/lol-test.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-learning/spring-learning.iml" filepath="$PROJECT_DIR$/spring-learning/spring-learning.iml" />
       <module fileurl="file://$PROJECT_DIR$/../tair-java-client/tair-client.iml" filepath="$PROJECT_DIR$/../tair-java-client/tair-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../git/allen-test/test.iml" filepath="$PROJECT_DIR$/../../git/allen-test/test.iml" />
     </modules>
   </component>
 </project>
